@@ -4,6 +4,8 @@ using ReportService.Application.Services;
 using ReportService.Domain.Entities;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using EventBus.Base.Abstraction;
+using ReportService.API.IntegrationEvents.Events;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,8 +16,9 @@ namespace ReportService.API.Controllers {
 
         private IReportService _reportService { get; }
         private IMapper _mapper { get; }
+        private IEventBus _eventBus { get; }
 
-        public UserController(IReportService reportService, IMapper mapper) {
+        public UserController(IReportService reportService, IMapper mapper, IEventBus eventBus) {
             _reportService = reportService;
             _mapper = mapper;
         }
@@ -40,6 +43,8 @@ namespace ReportService.API.Controllers {
         [HttpPost]
         public async Task<ActionResult<ReportDTO>> PostAsync() {
             var report = await _reportService.CreateAsync(new Report() { Status = Domain.Enum.ReportStatuses.Pending, Path = "" });
+            _eventBus.Publish(new NewReportRequestedIntegrationEvent(report.Id));
+
             return Ok(_mapper.Map<ReportDTO>(report));
         }
 

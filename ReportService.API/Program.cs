@@ -2,6 +2,7 @@ using ReportService.API.Middlewares;
 using ReportService.Application.Services;
 using ReportService.Application;
 using ReportService.Infrastructure;
+using ReportService.API.Registration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.ConfigureIntegrationEvents();
 
 builder.Services.AddApplication().AddInfrastructure(builder.Configuration);
 
@@ -29,5 +32,7 @@ app.UseAuthorization();
 app.UseMiddleware<GlobalErrorHandlingMiddleware>();
 
 app.MapControllers();
+
+app.RegisterIntegrationEvents();
 
 app.Run();
