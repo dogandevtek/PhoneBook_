@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  rabbitmq-container:
+    image: rabbitmq:management
+    container_name: rabbitmq-container
+    networks:
+      - Test_Network
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+networks:
+  Test_Network:
+    external: true

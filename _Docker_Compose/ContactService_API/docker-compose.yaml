@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  contact_service_api:
+    image: contactserviceapi:latest
+    container_name: contact_service_api
+    networks:
+      - Test_Network
+    ports:
+      - "5009:5009"
+
+networks:
+  Test_Network:
+    external: true

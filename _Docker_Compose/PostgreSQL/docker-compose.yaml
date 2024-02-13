@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  postgresql-container:
+    image: postgres
+    container_name: postgresql-container
+    networks:
+      - Test_Network
+    environment:
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+
+networks:
+  Test_Network:
+    external: true
