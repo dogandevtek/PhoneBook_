@@ -28,18 +28,22 @@ NOT: Yukarida belirttigim eksiklikler zaman kaybi olmamasi icin goz ardi edilmis
   
     Developer Command Prompt for vs 2022 uzerinde asagidaki komutu calistirin
  
-    ```bash
-    docker network create Test_Network
-    ```
+   ```bash
+   docker network create Test_Network
+   ```
 
 2. **RabbitMQ ve PostgreSQL image lerinin cekilmesi:**
 
    Developer Command Prompt for vs 2022 uzerinde asagidaki komutlari calistirin
 
-   > docker pull postgres
+   ```bash
+   docker pull postgres
+   ```
 
-   > docker pull rabbitmq:management
- 
+   ```bash
+   docker pull rabbitmq:management
+   ```
+
 3. **Docker Image Oluşturma:**
 
     ContactService.API, ReportService.API ve ReportGeneratorService projeleri için Docker image'leri oluşturmak için aşağıdaki adımları izleyin:
@@ -53,10 +57,13 @@ NOT: Yukarida belirttigim eksiklikler zaman kaybi olmamasi icin goz ardi edilmis
 
     - Developer Command Prompt for vs 2022 ile Solution altinda _Docker_Compose klasorune gidin.
     
-      > cd "........\_Docker_Compose"
-    
+    ```bash
+    cd "........\_Docker_Compose"
+    ```    
     
     - Docker-Compose dosyasını çalıştırmak için asagidaki komutu calistirin.
     
-      > docker-compose up -d
+     ```bash
+     docker-compose up -d
+     ```
 
