@@ -27,8 +27,10 @@ NOT: Yukarida belirttigim eksiklikler zaman kaybi olmamasi icin goz ardi edilmis
 1. **Özel Docker Ağı Oluşturma:**
   
     Developer Command Prompt for vs 2022 uzerinde asagidaki komutu calistirin
-
-    > docker network create test-network
+ 
+    ```bash
+    docker network create Test_Network
+    ```
 
 2. **RabbitMQ ve PostgreSQL image lerinin cekilmesi:**
 
