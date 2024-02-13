@@ -9,8 +9,11 @@ using System.Threading.Tasks;
 
 namespace ContactService.Infrastructure.DBContext {
     public class AppDBContext : DbContext {
+
+        public static string ConnectionString { get; set; }
+
         public AppDBContext() {
-                    
+
         }
 
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options) {
@@ -20,9 +23,13 @@ namespace ContactService.Infrastructure.DBContext {
         public DbSet<UserContact> UserContacts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-            if (!optionsBuilder.IsConfigured) 
-                optionsBuilder.UseNpgsql("Server=localhost;Port=5432;userid=postgres;Password=1234;Database=PhoneBook;");
-            
+            if (!optionsBuilder.IsConfigured) {
+                if (string.IsNullOrEmpty(ConnectionString))
+                    optionsBuilder.UseNpgsql("Server=localhost;Port=5432;userid=postgres;Password=1234;Database=PhoneBook;");
+                else
+                    optionsBuilder.UseNpgsql(ConnectionString);
+            }
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {

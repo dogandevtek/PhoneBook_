@@ -7,5 +7,6 @@ using System.Threading.Tasks;
 
 namespace ContactService.Application.Services {
     public interface IUserService : IRepository<User>{
+        Task<List<User>> GetAllWithDetailsAsync();
     }
 }

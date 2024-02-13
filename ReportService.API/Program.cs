@@ -3,6 +3,7 @@ using ReportService.Application.Services;
 using ReportService.Application;
 using ReportService.Infrastructure;
 using ReportService.API.Registration;
+using ReportService.Infrastructure.DBContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,10 +23,10 @@ builder.Services.AddScoped<IReportService, ReportService.Infrastructure.Services
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment()) {
+//if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
 app.UseAuthorization();
 

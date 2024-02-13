@@ -3,12 +3,14 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["ContactService.API/ContactService.API.csproj", "ContactService.API/"]
+COPY ["ContactService.Infrastructure/ContactService.Infrastructure.csproj", "ContactService.Infrastructure/"]
+COPY ["ContactService.Application/ContactService.Application.csproj", "ContactService.Application/"]
+COPY ["ContactService.Domain/ContactService.Domain.csproj", "ContactService.Domain/"]
 RUN dotnet restore "./ContactService.API/./ContactService.API.csproj"
 COPY . .
 WORKDIR "/src/ContactService.API"
@@ -22,3 +24,12 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "ContactService.API.dll"]
+
+
+
+#FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+#FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+#WORKDIR /app
+#
+#COPY ./bin/Release/net8.0/publish .
+#ENTRYPOINT ["dotnet", "ContactService.API.dll"]

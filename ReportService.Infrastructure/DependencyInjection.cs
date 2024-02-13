@@ -13,8 +13,22 @@ namespace ReportService.Infrastructure {
     public static class DependencyInjection {
 
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration) {
+#if DEBUG
+            services.AddDbContext<ReportDBContext>(o => o.UseNpgsql(configuration["ConnectionStrings:PostgreSql_Debug"]));
 
-            services.AddDbContext<ReportDBContext>(o => o.UseNpgsql(configuration["ConnectionStrings:PostgreSql"]));
+            ReportDBContext.ConnectionString = configuration["ConnectionStrings:PostgreSql_Debug"];
+            using (var dbContext = new ReportDBContext()) {
+                dbContext.Database.Migrate();
+            }
+
+#else
+            services.AddDbContext<ReportDBContext>(o => o.UseNpgsql(configuration["ConnectionStrings:PostgreSql_Release"]));
+            
+            ReportDBContext.ConnectionString = configuration["ConnectionStrings:PostgreSql_Release"];
+            using (var dbContext = new ReportDBContext()) {
+                dbContext.Database.Migrate();
+            }
+#endif
 
             return services;
         }

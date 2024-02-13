@@ -1,6 +1,7 @@
 ﻿using EventBus.Base;
 using EventBus.Base.Abstraction;
 using EventBus.Factory;
+using RabbitMQ.Client;
 using ReportService.API.IntegrationEvents.EventHandlers;
 using ReportService.API.IntegrationEvents.Events;
 
@@ -13,8 +14,17 @@ namespace ReportService.API.Registration {
                     ConnectionRetryCount = 5,
                     EventNameSuffix = "IntegrationEvent",
                     SubscriberClientAppName = $"ReportServiceApi",
-                    DefaultTopicName = $"ReportServiceApi_Exchange",
-                    EventBusType = EventBusType.RabbitMQ
+                    DefaultTopicName = $"ReportService_Exchange",
+                    EventBusType = EventBusType.RabbitMQ,
+                    Connection = new ConnectionFactory {
+#if DEBUG
+                        HostName = "localhost",
+#else
+                        HostName = "rabbitmq-container",
+                        //HostName = "localhost",
+#endif
+                        Port = 5672,
+                    }
                 };
 
                 return EventBusFactory.Create(config, sp);

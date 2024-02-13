@@ -20,7 +20,7 @@ namespace ReportGeneratorService {
                                            ConnectionRetryCount = 5,
                                            EventNameSuffix = "IntegrationEvent",
                                            SubscriberClientAppName = $"ReportGeneratorService",
-                                           DefaultTopicName = $"ReportServiceApi_Exchange", //Exchange
+                                           DefaultTopicName = $"ReportService_Exchange", //Exchange
                                            EventBusType = EventBusType.RabbitMQ,
                                            Connection = new ConnectionFactory {
 #if DEBUG

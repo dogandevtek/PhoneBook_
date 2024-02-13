@@ -3,12 +3,17 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["ReportService.API/ReportService.API.csproj", "ReportService.API/"]
+COPY ["EventBus.Factory/EventBus.Factory.csproj", "EventBus.Factory/"]
+COPY ["EventBus.Base/EventBus.Base.csproj", "EventBus.Base/"]
+COPY ["EventBus.RabbitMQ/EventBus.RabbitMQ.csproj", "EventBus.RabbitMQ/"]
+COPY ["ReportService.Infrastructure/ReportService.Infrastructure.csproj", "ReportService.Infrastructure/"]
+COPY ["ReportService.Application/ReportService.Application.csproj", "ReportService.Application/"]
+COPY ["ReportService.Domain/ReportService.Domain.csproj", "ReportService.Domain/"]
 RUN dotnet restore "./ReportService.API/./ReportService.API.csproj"
 COPY . .
 WORKDIR "/src/ReportService.API"
@@ -22,3 +27,11 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "ReportService.API.dll"]
+#
+#
+#FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+#FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+#WORKDIR /app
+#
+#COPY ./bin/Release/net8.0/publish .
+#ENTRYPOINT ["dotnet", "ReportService.API.dll"]

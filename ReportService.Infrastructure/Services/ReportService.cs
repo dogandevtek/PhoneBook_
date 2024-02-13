@@ -14,6 +14,8 @@ namespace ReportService.Infrastructure.Services {
 
         public ReportService(DBContext.ReportDBContext dbContext) {
             _dbContext = dbContext;
+
+            dbContext.Database.Migrate();
         }
 
         public async Task<List<Report>> GetAllAsync() {

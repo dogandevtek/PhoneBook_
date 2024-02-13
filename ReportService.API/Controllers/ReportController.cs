@@ -12,15 +12,16 @@ using ReportService.API.IntegrationEvents.Events;
 namespace ReportService.API.Controllers {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase {
+    public class ReportController : ControllerBase {
 
         private IReportService _reportService { get; }
         private IMapper _mapper { get; }
         private IEventBus _eventBus { get; }
 
-        public UserController(IReportService reportService, IMapper mapper, IEventBus eventBus) {
+        public ReportController(IReportService reportService, IMapper mapper, IEventBus eventBus) {
             _reportService = reportService;
             _mapper = mapper;
+            _eventBus = eventBus;
         }
 
         //TODO pagination ve filtreleme eklenebilir
@@ -40,8 +41,8 @@ namespace ReportService.API.Controllers {
             return Ok(_mapper.Map<ReportDTO>(report));
         }
 
-        [HttpPost]
-        public async Task<ActionResult<ReportDTO>> PostAsync() {
+        [HttpGet("[action]")]
+        public async Task<ActionResult<ReportDTO>> CreateNewReport() {
             var report = await _reportService.CreateAsync(new Report() { Status = Domain.Enum.ReportStatuses.Pending, Path = "" });
             _eventBus.Publish(new NewReportRequestedIntegrationEvent(report.Id));
 

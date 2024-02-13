@@ -20,6 +20,10 @@ namespace ContactService.Infrastructure.Services {
             return await _dbContext.Users.AsNoTracking().ToListAsync();
         }
 
+        public async Task<List<User>> GetAllWithDetailsAsync() {
+            return await _dbContext.Users.AsNoTracking().Include(o => o.UserContactList).ToListAsync();
+        }
+
         public async Task<User> GetAsync(int id) {
             return await _dbContext.Users.Include(o => o.UserContactList).FirstOrDefaultAsync(o => o.Id == id);
         }

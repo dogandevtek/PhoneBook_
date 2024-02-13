@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  report_service_api:
+    image: reportserviceapi:latest
+    container_name: report_service_api
+    networks:
+      - Test_Network
+    ports:
+      - "5008:5008"
+
+networks:
+  Test_Network:
+    external: true

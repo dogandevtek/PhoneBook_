@@ -32,6 +32,13 @@ namespace ContactService.API.Controllers {
             return Ok(_mapper.Map<List<UserDTO>>(userList));
         }
 
+        [HttpGet("[action]")]
+        public async Task<ActionResult<List<UserEDTO>>> GetAllWithDetailsAsync() {
+            var userList = await _userService.GetAllWithDetailsAsync();
+
+            return Ok(_mapper.Map<List<UserEDTO>>(userList));
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<UserEDTO>> GetAsync(int id) {
             var user = await _userService.GetAsync(id);

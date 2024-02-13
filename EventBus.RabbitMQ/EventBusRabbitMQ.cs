@@ -24,6 +24,9 @@ namespace EventBus.RabbitMQ {
             if (config.Connection != null) connectionFactory = config.Connection as ConnectionFactory;
             if (connectionFactory == null) connectionFactory = new ConnectionFactory() { };
 
+
+            Console.WriteLine($"Connecting to {connectionFactory.Endpoint}");
+
             rabbitMQConnection = new RabbitMQConnection(connectionFactory, config.ConnectionRetryCount);
             consumerChannel = CreateConsumerChannel();
 

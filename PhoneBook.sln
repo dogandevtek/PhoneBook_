@@ -35,7 +35,34 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus.RabbitMQ", "EventB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus.Factory", "EventBus.Factory\EventBus.Factory.csproj", "{78785263-CA2D-4596-BBDC-F392308B6D64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportGeneratorService", "ReportGeneratorService\ReportGeneratorService.csproj", "{316ACB09-C035-4831-9FCF-C2B197E85BBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportGeneratorService", "ReportGeneratorService\ReportGeneratorService.csproj", "{316ACB09-C035-4831-9FCF-C2B197E85BBE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Docker_Compose", "_Docker_Compose", "{B97B114B-7B98-4107-B911-68D9CA1C1F3C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMQ", "RabbitMQ", "{9693C809-68A9-4B6B-8D71-2410A2AF7334}"
+	ProjectSection(SolutionItems) = preProject
+		_Docker_Compose\RabbitMQ\docker-compose.yaml = _Docker_Compose\RabbitMQ\docker-compose.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PostgreSQL", "PostgreSQL", "{73FF03F8-E34C-4DB0-89EE-84F999196E1B}"
+	ProjectSection(SolutionItems) = preProject
+		_Docker_Compose\PostgreSQL\docker-compose.yaml = _Docker_Compose\PostgreSQL\docker-compose.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContactService_API", "ContactService_API", "{22438CB7-7336-43F3-B802-8374BCF3DBA8}"
+	ProjectSection(SolutionItems) = preProject
+		_Docker_Compose\ContactService_API\docker-compose.yaml = _Docker_Compose\ContactService_API\docker-compose.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReportService_API", "ReportService_API", "{271075B8-71F4-41B0-B764-9E23DC2A1678}"
+	ProjectSection(SolutionItems) = preProject
+		_Docker_Compose\ReportService_API\docker-compose.yaml = _Docker_Compose\ReportService_API\docker-compose.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReportGenerator", "ReportGenerator", "{B1E8E5AC-8BE8-48EB-95F7-F59AF39314E3}"
+	ProjectSection(SolutionItems) = preProject
+		_Docker_Compose\ReportGenerator\docker-compose.yaml = _Docker_Compose\ReportGenerator\docker-compose.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -109,6 +136,11 @@ Global
 		{D3452B12-1C8F-4B56-B590-847550BA062F} = {6E9AF005-99A5-4ADC-9E1E-EA78A549DACA}
 		{78785263-CA2D-4596-BBDC-F392308B6D64} = {6E9AF005-99A5-4ADC-9E1E-EA78A549DACA}
 		{316ACB09-C035-4831-9FCF-C2B197E85BBE} = {04A87537-D4CE-44BC-B105-76291DA74252}
+		{9693C809-68A9-4B6B-8D71-2410A2AF7334} = {B97B114B-7B98-4107-B911-68D9CA1C1F3C}
+		{73FF03F8-E34C-4DB0-89EE-84F999196E1B} = {B97B114B-7B98-4107-B911-68D9CA1C1F3C}
+		{22438CB7-7336-43F3-B802-8374BCF3DBA8} = {B97B114B-7B98-4107-B911-68D9CA1C1F3C}
+		{271075B8-71F4-41B0-B764-9E23DC2A1678} = {B97B114B-7B98-4107-B911-68D9CA1C1F3C}
+		{B1E8E5AC-8BE8-48EB-95F7-F59AF39314E3} = {B97B114B-7B98-4107-B911-68D9CA1C1F3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3F9DDF41-8CD9-41F0-B034-DC840B73E764}
