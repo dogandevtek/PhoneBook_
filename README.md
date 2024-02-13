@@ -17,6 +17,9 @@ Ayrıca, Docker image'lerinin Visual Studio 2022 üzerinden build edilmesi sağl
 - Rapor servisi kullanici verilerini almak icin contact web api'sine baglanirken url bilgisi static olarak setlendi. 'Service Registry' mantigi kurgulanabilirdi.
 - Rapor servisi urettigi raporlari dosyaya yazmak yerine json formatinda rapor apisine gonderdi ve rapor apisi bu veriyi dogrudan db'ye yazdi.
 - Rapor servisi RabbitMQ'dan gelen mesajlari bir db ye yazmadan direk olarak isledi. Bu durum servislerden herhangi birinin crash olmasi durumunda veri tutarsizligi olmasina sebep olabilir.
+- Proje icin herhangi bir arayuz hazirlanmadi. Testler icin swagger arayuzlerini kullanabilirsiniz. 
+    Report Servis: http://localhost:5008/swagger/index.html
+    Contact Service : http://localhost:5009/swagger/index.html   
 
 
 NOT: Yukarida belirttigim eksiklikler zaman kaybi olmamasi icin goz ardi edilmis eksikliklerdir. 
