@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  postgresql-container:
+    image: postgres
+    container_name: postgresql-container
+    networks:
+      - Test_Network
+    environment:
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+
+  rabbitmq-container:
+    image: rabbitmq:management
+    container_name: rabbitmq-container
+    networks:
+      - Test_Network
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  contact_service_api:
+    image: contactserviceapi:latest
+    container_name: contact_service_api
+    networks:
+      - Test_Network
+    ports:
+      - "5009:5009"
+    depends_on:
+      - postgresql-container
+      - rabbitmq-container
+
+  report_service_api:
+    container_name: report_service_api
+    image: reportserviceapi:latest
+    networks:
+      - Test_Network
+    ports:
+      - "5008:5008"
+    depends_on:
+      - postgresql-container
+      - rabbitmq-container
+    
+  report_generator_service:
+    container_name: report_generator_service
+    image: reportgeneratorservice:latest
+    networks:
+      - Test_Network
+    depends_on:
+      - postgresql-container
+      - rabbitmq-container
+    
+    
+networks:
+  Test_Network:
+    external: true
